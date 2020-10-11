@@ -1,2 +1,2 @@
-# 5_day_forecast_dashboard
+# Travel Forecast Dashboard
 (https://reedtlr.github.io/travel_forecast_dashboard/)
