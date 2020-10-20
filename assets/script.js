@@ -8,8 +8,9 @@ $(document).ready(function() {
     for (var i = 0; i < storedSearches.length; i++) {
         var addLi = $("<li>")
         var addBtn = $("<button>")
-        $(addBtn).attr({"trype": "button", "class": "btn btn-light", "id": storedSearches[i]})
+        $(addBtn).attr({"type": "button", "class": "btn btn-light", "id": storedSearches[i]})
         $(addBtn).text(storedSearches[i])
+        $(addBtn).val(storedSearches[i])
         $(addLi).append(addBtn)
         $(".pastSearches").prepend(addLi)
     }
@@ -31,7 +32,7 @@ $(document).ready(function() {
 
     // on click function for past cities 
     $(".btn-light").click(function() {
-        var cityCurrent = $(this.id).val();
+        var cityCurrent = $(this).val();
         console.log("cityCurrent", cityCurrent)
         currentWeather(cityCurrent)
     })
@@ -69,9 +70,50 @@ $(document).ready(function() {
         var addWs = $(".currentWs").text("Wind Speed: " + response.wind.speed);
         $(".currentWs").append(addWs);
 
-        
+        var currentLat = response.coord.lat
+        var currentLon = response.coord.lon
+        console.log(currentLat, currentLon)
+        runUv(currentLat,currentLon)
 
     });
     }
 
+    function runUv(currentLat, currentLon) {
+        var lat = currentLat
+        var lon = currentLon
+
+         // Constructing queryURL using lat and lon for UV index
+         var queryURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
+       
+         // Performing an AJAX request with the queryURL
+       $.ajax({
+         url: queryURL,
+         method: "GET"
+       })
+ 
+       // After data comes back from the request
+       .then(function(response) {
+         
+         console.log(response.value, "response from ajax request for UV");
+
+         var addUv = $("#uvIndex").text(response.value); 
+         $("#uvIndex").append(addUv);
+
+         if (response.value <= 3) {
+             var addColor = $("#uvIndex").css("background-color", "green");
+             addColor.css("color", "white");
+             $(".uvIndex").append(addColor);
+         } else if (response.value <= 7) {
+            var addColor = $("#uvIndex").css("background-color", "yellow");
+            addColor.css("color", "black");
+            $("#uvIndex").append(addColor);
+         } else {
+            var addColor = $("#uvIndex").css("background-color", "red");
+            addColor.css("color", "white");
+            $("#uvIndex").append(addColor);
+         }
+ 
+
+       })
+    }
 });
