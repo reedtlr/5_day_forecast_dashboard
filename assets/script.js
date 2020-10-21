@@ -144,12 +144,11 @@ $(document).ready(function() {
 
            
           
-          for (var i = 0; i < 5; i++) {
-            var day = i + 1
-            dateFancy = "moment().add(" + day + ", 'days').format('l')"
-            
+          for (var i = 0; i < 5; i++) {           
+            var j = i + 1
+            var dateFancy = moment().add(j, 'days').format('l')
             var divCol = $("<div>");
-          divCol.addClass("col");
+          divCol.addClass("col-2");
           $("#fiveDayList").append(divCol);
 
           var divCard = $("<div>");
@@ -161,7 +160,7 @@ $(document).ready(function() {
           divBody.addClass("card-body");
           divCard.append(divBody);
             
-          var head2 = $("<h2>");
+          var head2 = $("<p>");
           head2.text(dateFancy);
           divBody.append(head2);
 

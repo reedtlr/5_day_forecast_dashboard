@@ -5,3 +5,6 @@ ul{
 	border: .1em solid grey;
 	border-radius: 5px;
 }
+.card-body {
+	background-color: blue;
+}
