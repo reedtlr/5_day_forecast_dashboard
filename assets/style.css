@@ -8,3 +8,6 @@ ul{
 .card-body {
 	background-color: blue;
 }
+.fcard {
+	max-width: 175px;
+}

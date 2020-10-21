@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    $(".currentWeather").hide();
+    $(".fiveDay").hide();
     var storedSearches = JSON.parse(localStorage.getItem("storedSearches")) || [] ;
 
     //a loop to populate past searches on the page for easy access
@@ -15,6 +17,8 @@ $(document).ready(function() {
 
     //    onClick function to save city name to local storage and start functions to run API request 
     $("#searchBtn").click(function() {
+      $(".currentWeather").show();
+      $(".fiveDay").show();
       $("div").remove(".fcard") 
         var cityCurrent = $.trim($(this).siblings("input").val());
         storedSearches.push(cityCurrent)
@@ -30,6 +34,8 @@ $(document).ready(function() {
 
     // on click function for past cities 
     $(".btn-light").click(function() {
+      $(".currentWeather").show();
+      $(".fiveDay").show();
       $("div").remove(".fcard")  
       var cityCurrent = $(this).val();
 
