@@ -148,7 +148,7 @@ $(document).ready(function() {
             var j = i + 1
             var dateFancy = moment().add(j, 'days').format('l')
             var divCol = $("<div>");
-          divCol.addClass("col-2");
+          divCol.addClass("col-3 mb-1");
           $("#fiveDayList").append(divCol);
 
           var divCard = $("<div>");
