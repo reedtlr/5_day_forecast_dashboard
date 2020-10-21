@@ -1,3 +1,7 @@
 ul{
 	list-style: none;
 }
+.currentWeather {
+	border: .1em solid grey;
+	border-radius: 5px;
+}

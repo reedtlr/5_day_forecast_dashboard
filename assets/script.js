@@ -59,6 +59,10 @@ $(document).ready(function() {
         // storing the data from the AJAX request in the results variable
         var results = response;
         var addName = $(".currentName").text(response.name + " (" + moment().format('l') + ")");
+        var iconCode = response.weather[0].icon
+        var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+        var addIcon = $('#wicon').attr('src', iconUrl);
+        $(".icon").append(addIcon)
         $(".currentName").append(addName)
 
         var addTemp = $(".currentTemp").text("Temperature: " + Math.round(response.main.temp) + " °F");
@@ -73,7 +77,8 @@ $(document).ready(function() {
         var currentLat = response.coord.lat
         var currentLon = response.coord.lon
         console.log(currentLat, currentLon)
-        runUv(currentLat,currentLon)
+        runUv(currentLat, currentLon)
+        runFiveDay(currentLat, currentLon)
 
     });
     }
@@ -115,5 +120,29 @@ $(document).ready(function() {
  
 
        })
-    }
+      }
+
+       function runFiveDay(currentLat, currentLon) {
+        var lat = currentLat
+        var lon = currentLon
+
+           // Constructing queryURL using lat and lon for five day forecast
+           var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
+        console.log(queryURL)
+
+           // Performing an AJAX request with the queryURL
+         $.ajax({
+           url: queryURL,
+           method: "GET"
+         })
+   
+         // After data comes back from the request
+         .then(function(response) {
+           
+           console.log(response, "response from ajax five day forecast");
+
+
+          })  
+       }
+    
 });
