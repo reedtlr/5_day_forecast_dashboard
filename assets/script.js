@@ -60,7 +60,7 @@ $(document).ready(function() {
         var results = response;
         var addName = $(".currentName").text(response.name + " (" + moment().format('l') + ")");
         var iconCode = response.weather[0].icon
-        var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+        var iconUrl = "https://openweathermap.org/img/w/" + iconCode + ".png";
         var addIcon = $('#wicon').attr('src', iconUrl);
         $(".icon").append(addIcon)
         $(".currentName").append(addName)
@@ -167,7 +167,7 @@ $(document).ready(function() {
 
           var imgIcon = $("<img>");
           var iconCode = response.daily[i].weather[0].icon
-          var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+          var iconUrl = "https://openweathermap.org/img/w/" + iconCode + ".png";
           imgIcon.attr({"id": "wicon", "src": iconUrl, "alt": "weather icon", "class": "icon"});
           divBody.append(imgIcon);
 
