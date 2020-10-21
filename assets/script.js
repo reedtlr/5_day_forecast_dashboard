@@ -185,5 +185,7 @@ $(document).ready(function() {
 
           })  
        }
-    
+       $(document).ajaxError(function(){
+        alert("there are no results for that city, please try a new destination");
+      });
 });
