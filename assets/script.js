@@ -1,8 +1,6 @@
 $(document).ready(function() {
-    console.log("hello, javascript is working")
 
     var storedSearches = JSON.parse(localStorage.getItem("storedSearches")) || [] ;
-    console.log("storedSearches", storedSearches)
 
     //a loop to populate past searches on the page for easy access
     for (var i = 0; i < storedSearches.length; i++) {
@@ -17,8 +15,8 @@ $(document).ready(function() {
 
     //    onClick function to save city name to local storage and start functions to run API request 
     $("#searchBtn").click(function() {
+      $("div").remove(".fcard") 
         var cityCurrent = $.trim($(this).siblings("input").val());
-        console.log("cityCurrent", cityCurrent)
         storedSearches.push(cityCurrent)
         window.localStorage.setItem("storedSearches", JSON.stringify(storedSearches))
         var addLi = $("<li>")
@@ -32,15 +30,15 @@ $(document).ready(function() {
 
     // on click function for past cities 
     $(".btn-light").click(function() {
-        var cityCurrent = $(this).val();
-        console.log("cityCurrent", cityCurrent)
+      $("div").remove(".fcard")  
+      var cityCurrent = $(this).val();
+
         currentWeather(cityCurrent)
     })
 
     // function to add search data after 
     function currentWeather(cityCurrent) {
         var city = cityCurrent
-        console.log("city", city)
 
         // Constructing queryURL using city for current weather
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
@@ -54,7 +52,6 @@ $(document).ready(function() {
       // After data comes back from the request
       .then(function(response) {
         
-        console.log(response, "response from ajax request");
 
         // storing the data from the AJAX request in the results variable
         var results = response;
@@ -99,8 +96,6 @@ $(document).ready(function() {
        // After data comes back from the request
        .then(function(response) {
          
-         console.log(response.value, "response from ajax request for UV");
-
          var addUv = $("#uvIndex").text(response.value); 
          $("#uvIndex").append(addUv);
 
@@ -128,7 +123,6 @@ $(document).ready(function() {
 
            // Constructing queryURL using lat and lon for five day forecast
            var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
-        console.log(queryURL)
 
            // Performing an AJAX request with the queryURL
          $.ajax({
@@ -138,17 +132,14 @@ $(document).ready(function() {
    
          // After data comes back from the request
          .then(function(response) {
-           
-           console.log(response, "response from ajax five day forecast");
-
-
-           
+  
           
           for (var i = 0; i < 5; i++) {           
             var j = i + 1
             var dateFancy = moment().add(j, 'days').format('l')
             var divCol = $("<div>");
-          divCol.addClass("col-3 mb-1");
+          divCol.addClass("col-3 mb-1 fcard");
+          divCol.attr("#del")
           $("#fiveDayList").append(divCol);
 
           var divCard = $("<div>");
