@@ -43,7 +43,7 @@ $(document).ready(function() {
         console.log("city", city)
 
         // Constructing queryURL using city for current weather
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
        
         // Performing an AJAX request with the queryURL
       $.ajax({
@@ -88,7 +88,7 @@ $(document).ready(function() {
         var lon = currentLon
 
          // Constructing queryURL using lat and lon for UV index
-         var queryURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
+         var queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
        
          // Performing an AJAX request with the queryURL
        $.ajax({
