@@ -127,7 +127,7 @@ $(document).ready(function() {
         var lon = currentLon
 
            // Constructing queryURL using lat and lon for five day forecast
-           var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
+           var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=fdd6f8efa4fbb992f2faddee7d45c8de";
         console.log(queryURL)
 
            // Performing an AJAX request with the queryURL
@@ -140,6 +140,51 @@ $(document).ready(function() {
          .then(function(response) {
            
            console.log(response, "response from ajax five day forecast");
+
+
+           
+          
+          for (var i = 0; i < 5; i++) {
+            var day = i + 1
+            dateFancy = "moment().add(" + day + ", 'days').format('l')"
+            
+            var divCol = $("<div>");
+          divCol.addClass("col");
+          $("#fiveDayList").append(divCol);
+
+          var divCard = $("<div>");
+          divCard.addClass("card text-white bg-primary");
+          divCard.css("max-width: 18rem");
+          divCol.append(divCard);
+
+          var divBody = $("<div>");
+          divBody.addClass(card-body);
+          divCard.append(divBody);
+            
+          var head2 = $("<h2>");
+          head2.text(dateFancy);
+          divBody.append(head2);
+
+          var imgIcon = $("<img>");
+          var iconCode = response.daily[i].weather[0].icon
+          var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+          imgIcon.attr({"id": "wicon", "src": iconUrl, "alt": "weather icon", "class": "icon"});
+          divBody.append(imgIcon);
+
+          var pWeather = $("<p>");
+          pWeather.text("Temp: " + response.daily[i].temp.day + " °F")
+          divBody.append(pWeather);
+
+          var pHumidity = $("<p>");
+          pHumidity.text("Hum: " + response.daily[i].humidity + "%")
+          divBody.append(pHumidity);
+            
+            
+          }
+
+          
+
+
 
 
           })  
