@@ -158,7 +158,7 @@ $(document).ready(function() {
           divCol.append(divCard);
 
           var divBody = $("<div>");
-          divBody.addClass(card-body);
+          divBody.addClass("card-body");
           divCard.append(divBody);
             
           var head2 = $("<h2>");
