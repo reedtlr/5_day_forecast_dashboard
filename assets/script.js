@@ -71,10 +71,10 @@ $(document).ready(function() {
         var addTemp = $(".currentTemp").text("Temperature: " + Math.round(response.main.temp) + " °F");
         $(".currentTemp").append(addTemp);
 
-        var addHum = $(".currentHum").text("Humidity: " + response.main.humidity);
+        var addHum = $(".currentHum").text("Humidity: " + response.main.humidity + " %");
         $(".currentHum").append(addHum);
 
-        var addWs = $(".currentWs").text("Wind Speed: " + response.wind.speed);
+        var addWs = $(".currentWs").text("Wind Speed: " + response.wind.speed + " MPH");
         $(".currentWs").append(addWs);
 
         var currentLat = response.coord.lat
