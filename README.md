@@ -1,5 +1,6 @@
 # Travel Forecast Dashboard
-(https://reedtlr.github.io/cleanJS_password_generator/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 current and five day travel forecast 
 (https://reedtlr.github.io/travel_forecast_dashboard/)
 
